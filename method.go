@@ -21,6 +21,8 @@ const (
 	TRACE
 )
 
+var ALL = GET | POST | PUT | DELETE | PATCH | OPTIONS | HEAD | TRACE
+
 /*
 const (
 	POST    Method = "POST"
