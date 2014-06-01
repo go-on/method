@@ -1,8 +1,8 @@
 package method
 
 import (
-	"fmt"
-	"net/http"
+// "fmt"
+// "net/http"
 )
 
 //type Method string
@@ -90,17 +90,6 @@ func (m Method) IsResponseCacheable() bool {
 // the the method return an empty message body
 func (m Method) EmptyBody() bool {
 	return m == HEAD || m == OPTIONS
-}
-
-// RequestMethod is a shortcut to get the method of a *http.Request
-// it panicks if the method is unknown. if you want to check, if a method
-// is known, use StringToMethod
-func RequestMethod(rq *http.Request) Method {
-	m, has := StringToMethod[rq.Method]
-	if !has {
-		panic(fmt.Sprintf("unknown HTTP method %#v", rq.Method))
-	}
-	return m
 }
 
 /*

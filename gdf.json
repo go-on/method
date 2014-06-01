@@ -14,7 +14,6 @@
     "PATCH": "const Method 1 \u003c\u003c iota",
     "POST": "const Method 1 \u003c\u003c iota",
     "PUT": "const Method 1 \u003c\u003c iota",
-    "RequestMethod": "func (*net/http.Request) Method",
     "StringToMethod": "map[string]Method{\n\u0009\"POST\":\u0009POST,\n\u0009\"GET\":\u0009GET,\n\u0009\"PUT\":\u0009PUT,\n\u0009\"DELETE\":\u0009DELETE,\n\u0009\"PATCH\":\u0009PATCH,\n\u0009\"OPTIONS\":\u0009OPTIONS,\n\u0009\"HEAD\":\u0009HEAD,\n\u0009\"TRACE\":\u0009TRACE,\n}",
     "TRACE": "const Method 1 \u003c\u003c iota",
     "init": ""
