@@ -1,29 +1,7 @@
 package method
 
-import (
-// "fmt"
-// "net/http"
-)
+type Method string
 
-//type Method string
-//type verb int
-
-type Method int
-
-const (
-	POST Method = 1 << iota
-	GET
-	PUT
-	DELETE
-	PATCH
-	OPTIONS
-	HEAD
-	TRACE
-)
-
-var ALL = GET | POST | PUT | DELETE | PATCH | OPTIONS | HEAD | TRACE
-
-/*
 const (
 	POST    Method = "POST"
 	GET     Method = "GET"
@@ -34,32 +12,54 @@ const (
 	HEAD    Method = "HEAD"
 	TRACE   Method = "TRACE"
 )
-*/
-
-var methodStrings = map[Method]string{
-	POST:    "POST",
-	GET:     "GET",
-	PUT:     "PUT",
-	DELETE:  "DELETE",
-	PATCH:   "PATCH",
-	OPTIONS: "OPTIONS",
-	HEAD:    "HEAD",
-	TRACE:   "TRACE",
-}
-
-var StringToMethod = map[string]Method{
-	"POST":    POST,
-	"GET":     GET,
-	"PUT":     PUT,
-	"DELETE":  DELETE,
-	"PATCH":   PATCH,
-	"OPTIONS": OPTIONS,
-	"HEAD":    HEAD,
-	"TRACE":   TRACE,
-}
 
 func (m Method) String() string {
-	return methodStrings[m]
+	return string(m)
+}
+
+// Is checks if the given string is the method
+func (m Method) Is(meth string) bool {
+	return string(m) == meth
+}
+
+// IsKnown checks if method is a known http method
+func (m Method) IsKnown() bool {
+	switch m {
+	case GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD, TRACE:
+		return true
+	default:
+		return false
+	}
+}
+
+// IsREST checks if method one of the REST methods
+func (m Method) IsREST() bool {
+	switch m {
+	case GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD:
+		return true
+	default:
+		return false
+	}
+}
+
+// MayHaveIfMatch checks if method is allowed to have an IfMatch header
+func (m Method) MayHaveIfMatch() bool {
+	switch m {
+	case GET, PUT, DELETE, PATCH:
+		return true
+	default:
+		return false
+	}
+}
+
+// MayHaveEtag checks if method is allowed to have an Etag header
+func (m Method) MayHaveEtag() bool {
+	switch m {
+	case GET, HEAD:
+		return true
+	default:
+		return false
+	}
 }
 
 /*
